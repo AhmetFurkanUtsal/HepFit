@@ -1,26 +1,32 @@
 # HepFit Sports Application - Cursor Rules
 
 ## Communication Rules
+
 - All code comments must be written in Turkish
 - Variable names and function names should be in English
 
 ## General Project Rules
+
 ### Technology Stack
+
 - Sports and fitness application development
 - Follow Clean Architecture principles
 
 #### Performance Optimizations
+
 - Use FlatList/VirtualizedList (instead of ScrollView)
 - Optimize useMemo and useCallback hooks
 - Consider react-native-fast-image for image optimization
 - Implement lazy loading
 
 #### Responsive Design
+
 - Responsive components for different screen sizes
 - Safe area handling (react-native-safe-area-context)
 - Keyboard avoiding behavior
 
 ### Performance Guidelines
+
 - Optimize bundle size
 - Prevent memory leaks (cleanup functions)
 - Optimize network requests (caching, retry logic)
@@ -29,28 +35,35 @@
 - Always make screen connections
 
 ## Design System
+
 ### Color Palette
+
 #### Primary Colors
-- *Primary Blue Dark*: #001F30 - Ana koyu mavi renk
-- *Primary Blue Medium*: #002D46 - Orta ton mavi
-- *Primary Blue Light*: #003C5D - Açık mavi ton
-- *Primary Blue*: #004B73 - Standart mavi
-- *Primary Blue Bright*: #01649A - Parlak mavi, butonlar için
+
+- _Primary Blue Dark_: #001F30 - Ana koyu mavi renk
+- _Primary Blue Medium_: #002D46 - Orta ton mavi
+- _Primary Blue Light_: #003C5D - Açık mavi ton
+- _Primary Blue_: #004B73 - Standart mavi
+- _Primary Blue Bright_: #01649A - Parlak mavi, butonlar için
 
 #### Card Colors
-- *Card Background*: #F5F5F5 - Kart arka planı
-- *Card Border*: #E5E5E5 - Kart kenarlığı
-- *Card Shadow*: rgba(0, 0, 0, 0.25) - Kart gölgesi
+
+- _Card Background_: #F5F5F5 - Kart arka planı
+- _Card Border_: #E5E5E5 - Kart kenarlığı
+- _Card Shadow_: rgba(0, 0, 0, 0.25) - Kart gölgesi
 
 ### Typography
+
 #### Font Family
-- *Primary*: Lato - Ana font ailesi
-- *Secondary*: Inter - İkincil font (sistem metinleri için)
-- *Monospace*: Helvetica Neue - Özel durumlar için
+
+- _Primary_: Lato - Ana font ailesi
+- _Secondary_: Inter - İkincil font (sistem metinleri için)
+- _Monospace_: Helvetica Neue - Özel durumlar için
 
 ## Page Organization Rules
 
 ### Folder Structure
+
 ```
 src/
   pages/
@@ -58,12 +71,12 @@ src/
       ├── index.js          // Sayfa export'u
       ├── Welcome.js        // Ana component
       └── Welcome.styles.js // Stil dosyası
-    
+
     LoginPage/
       ├── index.js
       ├── Login.js
       └── Login.styles.js
-    
+
     ProfilePage/
       ├── index.js
       ├── Profile.js
@@ -73,34 +86,40 @@ src/
 ### File Naming Conventions
 
 #### 1. Folder Name
+
 - **Format**: `{PageName}Page` (PascalCase)
 - **Example**: `WelcomePage`, `WorkoutDetailsPage`, `UserProfilePage`
 
 #### 2. Main Component File
+
 - **Format**: `{PageName}.js` (PascalCase)
 - **Example**: `Welcome.js`, `WorkoutDetails.js`, `UserProfile.js`
 
 #### 3. Index File
+
 - **File name**: `index.js`
 - **Content**: Exports the main component
 
 #### 4. Style File
+
 - **Format**: `{PageName}.styles.js` (PascalCase)
 - **Example**: `Welcome.styles.js`, `WorkoutDetails.styles.js`
 
 ### File Templates
 
 #### index.js Template
+
 ```javascript
 // Ana component'i export et
-export { default } from './Welcome';
+export {default} from './Welcome';
 ```
 
 #### Main Component Template
+
 ```javascript
 import React from 'react';
-import { View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {View, Text} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './Welcome.styles';
 
 const Welcome = () => {
@@ -118,10 +137,11 @@ export default Welcome;
 ```
 
 #### Style File Template
-```javascript
-import { StyleSheet, Dimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+```javascript
+import {StyleSheet, Dimensions} from 'react-native';
+
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -146,7 +166,9 @@ export default styles;
 ```
 
 ### Figma MVP Integration Workflow
+
 When adding a new page:
+
 1. **Determine page name from Figma MVP link**
 2. **Create folder**: `{PageName}Page/`
 3. **Create three files**: `index.js`, `{PageName}.js`, `{PageName}.styles.js`
@@ -156,6 +178,7 @@ When adding a new page:
 ### Additional Organization Rules
 
 #### Shared Components Structure
+
 ```
 src/
   components/
@@ -166,6 +189,7 @@ src/
 ```
 
 #### Utilities and Services Structure
+
 ```
 src/
   utils/
@@ -177,6 +201,7 @@ src/
 ```
 
 ### Navigation Integration Example
+
 ```javascript
 // App.js veya Navigation dosyasında
 import WelcomePage from './src/pages/WelcomePage';
@@ -187,15 +212,15 @@ const Stack = createNativeStackNavigator();
 function AppNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen 
-        name="Welcome" 
+      <Stack.Screen
+        name="Welcome"
         component={WelcomePage}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
-      <Stack.Screen 
-        name="Login" 
+      <Stack.Screen
+        name="Login"
         component={LoginPage}
-        options={{ title: 'Giriş Yap' }}
+        options={{title: 'Giriş Yap'}}
       />
     </Stack.Navigator>
   );
@@ -205,15 +230,17 @@ function AppNavigator() {
 ## Additional Performance Guidelines
 
 ### Bundle Optimization
+
 - Code splitting for unnecessary code separation
 - Tree shaking for unused code cleanup
 - Lazy imports for on-demand loading
 
 ### Memory Leak Prevention
+
 ```javascript
 useEffect(() => {
   const subscription = someService.subscribe();
-  
+
   // Cleanup function - bellek sızıntısını önler
   return () => {
     subscription.unsubscribe();
@@ -222,6 +249,7 @@ useEffect(() => {
 ```
 
 ### Network Optimization
+
 - Caching for API responses
 - Retry logic for failed requests
-- Request batching for multiple requests 
+- Request batching for multiple requests
