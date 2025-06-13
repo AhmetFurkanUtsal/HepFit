@@ -12,9 +12,8 @@ import {
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {styles} from './Login.style';
+import {styles} from './Register.style';
 
-// Varlıklar
 const loginBackground = require('../../assets/images/backgrounds/background.png');
 const logo = require('../../assets/images/logos/logo.png');
 
@@ -23,23 +22,22 @@ const logo = require('../../assets/images/logos/logo.png');
 const Header = () => (
   <View style={styles.headerSection}>
     <Image source={logo} style={styles.logo} resizeMode="contain" />
-    <Text style={styles.appTitle}>HepFit</Text>
-    <Text style={styles.welcomeText}>Merhaba Sporcu!</Text>
-    <Text style={styles.subtitleText}>Antrenmanına devam et</Text>
+    <Text style={styles.appTitle}>Aramıza Katıl!</Text>
+    <Text style={styles.subtitleText}>Kampüs Sporuna Başla</Text>
   </View>
 );
 
-const LoginForm = ({
+const RegisterForm = ({
   email,
   setEmail,
   password,
   setPassword,
-  isPasswordVisible,
-  setIsPasswordVisible,
-  navigation,
+  passwordConfirm,
+  setPasswordConfirm,
+  phone,
+  setPhone,
 }) => (
   <>
-    {/* E-Mail Input */}
     <View style={styles.inputSection}>
       <Text style={styles.inputLabel}>E-Mail</Text>
       <View style={styles.inputContainer}>
@@ -61,7 +59,6 @@ const LoginForm = ({
       </View>
     </View>
 
-    {/* Şifre Input */}
     <View style={styles.inputSection}>
       <Text style={styles.inputLabel}>Şifre</Text>
       <View style={styles.inputContainer}>
@@ -73,70 +70,78 @@ const LoginForm = ({
         />
         <TextInput
           style={styles.textInput}
-          placeholder="Şifrenizi girin..."
+          placeholder="Şifrenizi oluşturun..."
           placeholderTextColor="#A1A1AA"
           value={password}
           onChangeText={setPassword}
-          secureTextEntry={!isPasswordVisible}
+          secureTextEntry
         />
-        <TouchableOpacity
-          onPress={() => setIsPasswordVisible(!isPasswordVisible)}
-          style={styles.eyeIconContainer}>
-          <Icon
-            name={isPasswordVisible ? 'eye-off-outline' : 'eye-outline'}
-            size={22}
-            color="#6B7280"
-          />
-        </TouchableOpacity>
       </View>
     </View>
 
-    {/* Şifremi Unuttum */}
-    <TouchableOpacity style={styles.forgotPasswordContainer}>
-      <Text style={styles.forgotPasswordText}>Şifremi Unuttum?</Text>
-    </TouchableOpacity>
-
-    {/* Giriş Butonu */}
-    <TouchableOpacity
-      style={styles.loginButton}
-      onPress={() => navigation.navigate('Selection')}>
-      <Text style={styles.loginButtonText}>GİRİŞ</Text>
-    </TouchableOpacity>
-  </>
-);
-
-const SocialLogin = ({onSignupPress}) => (
-  <>
-    <Text style={styles.orText}>veya şununla devam et</Text>
-    <View style={styles.socialButtonsContainer}>
-      <TouchableOpacity style={styles.socialButton}>
-        <Icon name="google" size={28} color="#DB4437" />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.socialButton}>
-        <Icon name="facebook" size={28} color="#1877F2" />
-      </TouchableOpacity>
+    <View style={styles.inputSection}>
+      <Text style={styles.inputLabel}>Şifre Tekrar</Text>
+      <View style={styles.inputContainer}>
+        <Icon
+          name="lock-check-outline"
+          size={22}
+          color="#6B7280"
+          style={styles.inputIcon}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Şifrenizi tekrar girin..."
+          placeholderTextColor="#A1A1AA"
+          value={passwordConfirm}
+          onChangeText={setPasswordConfirm}
+          secureTextEntry
+        />
+      </View>
     </View>
-    <View style={styles.signupContainer}>
-      <Text style={styles.signupText}>Hesabınız yok mu? </Text>
-      <TouchableOpacity onPress={onSignupPress}>
-        <Text style={styles.signupLink}>Hemen Katıl</Text>
-      </TouchableOpacity>
+
+    <View style={styles.inputSection}>
+      <Text style={styles.inputLabel}>Telefon (İsteğe Bağlı)</Text>
+      <View style={styles.inputContainer}>
+        <Icon
+          name="phone-outline"
+          size={22}
+          color="#6B7280"
+          style={styles.inputIcon}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Telefon numaranızı girin..."
+          placeholderTextColor="#A1A1AA"
+          value={phone}
+          onChangeText={setPhone}
+          keyboardType="phone-pad"
+        />
+      </View>
     </View>
+
+    <TouchableOpacity style={styles.registerButton}>
+      <Text style={styles.registerButtonText}>Hesap Oluştur</Text>
+    </TouchableOpacity>
   </>
 );
 
 // --- Ana Sayfa Bileşeni ---
 
-const Login = ({navigation}) => {
+const Register = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [phone, setPhone] = useState('');
+
+  const handleGoBack = () => {
+    navigation.goBack();
+    return true; // Android'de geri tuşu olayını burada sonlandırır
+  };
 
   React.useEffect(() => {
-    const backAction = () => true;
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
-      backAction,
+      handleGoBack,
     );
     return () => backHandler.remove();
   }, []);
@@ -156,19 +161,23 @@ const Login = ({navigation}) => {
             style={styles.scrollContainer}
             showsVerticalScrollIndicator={false}>
             <View style={styles.formContainer}>
-              <Text style={styles.loginTitle}>Giriş Yap</Text>
-              <LoginForm
+              <Text style={styles.loginTitle}>Kayıt Ol</Text>
+              <RegisterForm
                 email={email}
                 setEmail={setEmail}
                 password={password}
                 setPassword={setPassword}
-                isPasswordVisible={isPasswordVisible}
-                setIsPasswordVisible={setIsPasswordVisible}
-                navigation={navigation}
+                passwordConfirm={passwordConfirm}
+                setPasswordConfirm={setPasswordConfirm}
+                phone={phone}
+                setPhone={setPhone}
               />
-              <SocialLogin
-                onSignupPress={() => navigation.navigate('Register')}
-              />
+              <View style={styles.loginContainer}>
+                <Text style={styles.loginText}>Zaten bir hesabın var mı? </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                  <Text style={styles.loginLink}>Giriş Yap</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </ScrollView>
         </View>
@@ -177,4 +186,4 @@ const Login = ({navigation}) => {
   );
 };
 
-export default Login;
+export default Register;

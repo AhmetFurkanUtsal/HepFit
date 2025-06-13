@@ -13,19 +13,19 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   headerSection: {
-    flex: 0.45,
+    flex: 0.35,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingTop: 40,
   },
   logo: {
-    width: 120,
-    height: 120,
+    width: 100,
+    height: 100,
     marginBottom: 15,
   },
   appTitle: {
-    fontSize: 32,
+    fontSize: 28,
     fontFamily: 'Lato-Bold',
     color: '#FFFFFF',
     marginBottom: 8,
@@ -34,19 +34,9 @@ export const styles = StyleSheet.create({
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 2,
   },
-  welcomeText: {
-    fontSize: 24,
-    fontFamily: 'Lato-Regular',
-    color: '#FFFFFF',
-    marginBottom: 5,
-    textAlign: 'center',
-    textShadowColor: 'rgba(0, 0, 0, 0.5)',
-    textShadowOffset: {width: 1, height: 1},
-    textShadowRadius: 2,
-  },
   subtitleText: {
-    fontSize: 16,
-    fontFamily: 'Lato-Light',
+    fontSize: 18,
+    fontFamily: 'Lato-Regular',
     color: '#FFFFFF',
     opacity: 0.9,
     textAlign: 'center',
@@ -55,7 +45,7 @@ export const styles = StyleSheet.create({
     textShadowRadius: 2,
   },
   formSection: {
-    flex: 0.55,
+    flex: 0.65,
     backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -68,7 +58,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#E0E0E0',
     borderRadius: 2,
     alignSelf: 'center',
-    marginBottom: 20,
+    marginBottom: 15,
   },
   scrollContainer: {
     flex: 1,
@@ -81,10 +71,10 @@ export const styles = StyleSheet.create({
     fontFamily: 'Lato-Bold',
     color: '#183B4E',
     textAlign: 'center',
-    marginBottom: 25,
+    marginBottom: 20,
   },
   inputSection: {
-    marginBottom: 15,
+    marginBottom: 12,
   },
   inputLabel: {
     fontSize: 14,
@@ -116,64 +106,31 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     right: 15,
   },
-  forgotPasswordContainer: {
-    alignItems: 'flex-end',
-    marginBottom: 25,
-    marginTop: 10,
-  },
-  forgotPasswordText: {
-    fontSize: 14,
-    fontFamily: 'Lato-Regular',
-    color: '#183B4E',
-  },
-  loginButton: {
+  registerButton: {
     backgroundColor: '#183B4E',
     borderRadius: 12,
     paddingVertical: 16,
     alignItems: 'center',
-    marginBottom: 25,
+    marginTop: 15,
+    marginBottom: 20,
     elevation: 3,
   },
-  loginButtonText: {
+  registerButtonText: {
     fontSize: 16,
     fontFamily: 'Lato-Bold',
     color: '#FFFFFF',
   },
-  orText: {
-    fontSize: 14,
-    fontFamily: 'Lato-Regular',
-    color: '#6B7280',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  socialButtonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 20,
-    marginBottom: 25,
-  },
-  socialButton: {
-    width: 60,
-    height: 55,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#E5E7EB',
-    elevation: 2,
-  },
-  signupContainer: {
+  loginContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  signupText: {
+  loginText: {
     fontSize: 14,
     fontFamily: 'Lato-Regular',
     color: '#6B7280',
   },
-  signupLink: {
+  loginLink: {
     fontSize: 14,
     fontFamily: 'Lato-Bold',
     color: '#183B4E',

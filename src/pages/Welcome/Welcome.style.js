@@ -2,63 +2,98 @@ import {StyleSheet, Dimensions} from 'react-native';
 
 const {width, height} = Dimensions.get('window');
 
-export const styles = StyleSheet.create({
-  card: {
-    backgroundColor: '#F8F9FA',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    maxHeight: height * 0.65,
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-    shadowColor: '#000',
+// Tasarımdaki ana renk
+const PRIMARY_COLOR = '#183B4E';
 
-    shadowOffset: {
-      width: 0,
-      height: -5,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 10,
-  },
-  background: {
+export const styles = StyleSheet.create({
+  container: {
     flex: 1,
-    width: width,
-    height: height,
+    backgroundColor: PRIMARY_COLOR,
+  },
+  // Üst kısım (Resim)
+  topContainer: {
+    flex: 0.4,
+    backgroundColor: '#f0f0f0', // Arka plan resmi yüklenemezse diye
+  },
+  backgroundImage: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   logo: {
-    width: width * 0.4,
-    height: width * 0.4,
-    alignSelf: 'center',
-    marginTop: height * 0.1,
+    width: 130,
+    height: 130,
   },
-
-  textHeader: {
-    fontSize: 40,
-    textAlign: 'center',
-    color: '#183B4E',
-    fontFamily: 'Lato-Bold',
+  // Alt kısım (İçerik Paneli)
+  bottomContainer: {
+    flex: 0.6,
+    alignItems: 'center',
+    paddingHorizontal: 30,
+    paddingTop: 40,
+    paddingBottom: 40,
+    justifyContent: 'space-between',
   },
   textContainer: {
-    marginTop: 20,
+    alignItems: 'center',
   },
-  textSubtitle: {
-    fontSize: 20,
-    color: '#183B4E',
-    textAlign: 'center',
-    fontFamily: 'Lato-Black',
-  },
-  text: {
-    fontSize: 20,
-    color: '#183B4E',
-    fontFamily: 'Lato-Regular',
-  },
-  buttonContainer: {
-    marginTop: 20,
-  },
-  button: {
+  appName: {
+    fontSize: 56,
     fontFamily: 'Lato-Bold',
+    color: '#FFFFFF',
+  },
+  divider: {
+    width: 40,
+    height: 3,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 2,
+    marginTop: 15,
+  },
+  title: {
+    fontSize: 22,
+    fontFamily: 'Lato-Bold',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginTop: 30,
+  },
+  subtitle: {
+    fontSize: 16,
+    fontFamily: 'Lato-Regular',
+    color: 'rgba(255, 255, 255, 0.8)',
+    textAlign: 'center',
+    marginTop: 15,
+    lineHeight: 24,
+  },
+  // Butonlar
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  loginButton: {
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.4)',
+    paddingVertical: 16,
+    borderRadius: 30,
+    alignItems: 'center',
+    width: '48%',
+  },
+  loginButtonText: {
+    fontSize: 16,
+    fontFamily: 'Lato-Bold',
+    color: '#FFFFFF',
+  },
+  registerButton: {
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 16,
+    borderRadius: 30,
+    alignItems: 'center',
+    width: '48%',
+    elevation: 3,
+  },
+  registerButtonText: {
+    fontSize: 16,
+    fontFamily: 'Lato-Bold',
+    color: PRIMARY_COLOR,
   },
 });

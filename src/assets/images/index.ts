@@ -1,8 +1,10 @@
+export const Images = {
+  logo: require('./logos/logo.png'),
+  loginBackground: require('./backgrounds/background.png'),
+};
+
+// Gelecekte diğer görseller için
 export const images = {
-  backgrounds: {
-    main: require('./backgrounds/background.png'),
-  },
-  // Gelecekte diğer görseller için
   logos: {
     // hepfit: require('./logos/hepfit-logo.png'),
   },

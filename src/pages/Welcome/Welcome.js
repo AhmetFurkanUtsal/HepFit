@@ -2,75 +2,65 @@ import React from 'react';
 import {
   View,
   Text,
-  Dimensions,
   ImageBackground,
-  StyleSheet,
   Image,
-  TextInput,
   TouchableOpacity,
-  ScrollView,
-  Button,
+  StatusBar,
 } from 'react-native';
-
-import {useNavigation} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {styles} from './Welcome.style';
-import {fonts} from '../../assets/fonts/index';
-import BaseCard from '../../Components/BaseCard';
 
-const {width, height} = Dimensions.get('window');
+const welcomeBackground = require('../../assets/images/backgrounds/background.png');
+const logo = require('../../assets/images/logos/logo.png');
 
-function Logo() {
+const Welcome = ({navigation}) => {
   return (
-    <View>
-      <Image
-        source={require('../../assets/images/logos/logo.png')}
-        style={styles.logo}
-        resizeMode="contain"
+    <View style={styles.container}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent={true}
       />
+
+      {/* Üst Kısım: Arka Plan Resmi ve Logo */}
+      <View style={styles.topContainer}>
+        <ImageBackground
+          source={welcomeBackground}
+          style={styles.backgroundImage}
+          resizeMode="cover">
+          {/* Logo, arka plan resminin üzerinde */}
+          <Image source={logo} style={styles.logo} resizeMode="contain" />
+        </ImageBackground>
+      </View>
+
+      {/* Alt Kısım: İçerik */}
+      <View style={styles.bottomContainer}>
+        {/* Metinler */}
+        <View style={styles.textContainer}>
+          <Text style={styles.appName}>HepFit</Text>
+          <View style={styles.divider} />
+          <Text style={styles.title}>Spor Yolculuğunuz Başlıyor</Text>
+          <Text style={styles.subtitle}>
+            Hedeflerinize ulaşmak için ihtiyacınız olan her şey burada.
+            Antrenman yapın, etkinlikler oluşturun ve maçlara katılın!
+          </Text>
+        </View>
+
+        {/* Butonlar */}
+        <View style={styles.buttonRow}>
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.loginButtonText}>Giriş Yap</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.registerButton}
+            onPress={() => navigation.navigate('Register')}>
+            <Text style={styles.registerButtonText}>Kayıt Ol</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
-  );
-}
-
-function Card() {
-  const navigation = useNavigation();
-  return (
-    <BaseCard>
-      <View>
-        <Text style={styles.textHeader}>HepFit</Text>
-      </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.textSubtitle}>Spor Yolculuğunuz Başlıyor</Text>
-      </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.text}>
-          Hedeflerinize ulaşmak için ihtiyacınız olan her şey burada. Antrenman
-          yapın. Spor etkinlikleri oluşturun. Maçlara katılın!
-        </Text>
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Giriş Yap"
-          onPress={() => navigation.navigate('Login')}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button title="Kayıt Ol" />
-      </View>
-    </BaseCard>
-  );
-}
-
-const Welcome = () => {
-  return (
-    <ImageBackground
-      source={require('../../assets/images/backgrounds/background.png')}
-      style={styles.background}
-      resizeMode="cover">
-      <Logo />
-      <Card />
-    </ImageBackground>
   );
 };
 
