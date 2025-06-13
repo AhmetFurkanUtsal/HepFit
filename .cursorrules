@@ -1,0 +1,227 @@
+# HepFit Sports Application - Cursor Rules
+
+## Communication Rules
+- All code comments must be written in Turkish
+- Variable names and function names should be in English
+
+## General Project Rules
+### Technology Stack
+- Sports and fitness application development
+- Follow Clean Architecture principles
+
+#### Performance Optimizations
+- Use FlatList/VirtualizedList (instead of ScrollView)
+- Optimize useMemo and useCallback hooks
+- Consider react-native-fast-image for image optimization
+- Implement lazy loading
+
+#### Responsive Design
+- Responsive components for different screen sizes
+- Safe area handling (react-native-safe-area-context)
+- Keyboard avoiding behavior
+
+### Performance Guidelines
+- Optimize bundle size
+- Prevent memory leaks (cleanup functions)
+- Optimize network requests (caching, retry logic)
+- Optimize image loading
+- Smooth animations (60 FPS)
+- Always make screen connections
+
+## Design System
+### Color Palette
+#### Primary Colors
+- *Primary Blue Dark*: #001F30 - Ana koyu mavi renk
+- *Primary Blue Medium*: #002D46 - Orta ton mavi
+- *Primary Blue Light*: #003C5D - Açık mavi ton
+- *Primary Blue*: #004B73 - Standart mavi
+- *Primary Blue Bright*: #01649A - Parlak mavi, butonlar için
+
+#### Card Colors
+- *Card Background*: #F5F5F5 - Kart arka planı
+- *Card Border*: #E5E5E5 - Kart kenarlığı
+- *Card Shadow*: rgba(0, 0, 0, 0.25) - Kart gölgesi
+
+### Typography
+#### Font Family
+- *Primary*: Lato - Ana font ailesi
+- *Secondary*: Inter - İkincil font (sistem metinleri için)
+- *Monospace*: Helvetica Neue - Özel durumlar için
+
+## Page Organization Rules
+
+### Folder Structure
+```
+src/
+  pages/
+    WelcomePage/
+      ├── index.js          // Sayfa export'u
+      ├── Welcome.js        // Ana component
+      └── Welcome.styles.js // Stil dosyası
+    
+    LoginPage/
+      ├── index.js
+      ├── Login.js
+      └── Login.styles.js
+    
+    ProfilePage/
+      ├── index.js
+      ├── Profile.js
+      └── Profile.styles.js
+```
+
+### File Naming Conventions
+
+#### 1. Folder Name
+- **Format**: `{PageName}Page` (PascalCase)
+- **Example**: `WelcomePage`, `WorkoutDetailsPage`, `UserProfilePage`
+
+#### 2. Main Component File
+- **Format**: `{PageName}.js` (PascalCase)
+- **Example**: `Welcome.js`, `WorkoutDetails.js`, `UserProfile.js`
+
+#### 3. Index File
+- **File name**: `index.js`
+- **Content**: Exports the main component
+
+#### 4. Style File
+- **Format**: `{PageName}.styles.js` (PascalCase)
+- **Example**: `Welcome.styles.js`, `WorkoutDetails.styles.js`
+
+### File Templates
+
+#### index.js Template
+```javascript
+// Ana component'i export et
+export { default } from './Welcome';
+```
+
+#### Main Component Template
+```javascript
+import React from 'react';
+import { View, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import styles from './Welcome.styles';
+
+const Welcome = () => {
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.content}>
+        {/* Sayfa içeriği buraya gelecek */}
+        <Text style={styles.title}>Hoş Geldiniz</Text>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export default Welcome;
+```
+
+#### Style File Template
+```javascript
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5F5F5', // Card Background rengi
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+  },
+  title: {
+    fontSize: 24,
+    fontFamily: 'Lato-Bold',
+    color: '#001F30', // Primary Blue Dark
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+});
+
+export default styles;
+```
+
+### Figma MVP Integration Workflow
+When adding a new page:
+1. **Determine page name from Figma MVP link**
+2. **Create folder**: `{PageName}Page/`
+3. **Create three files**: `index.js`, `{PageName}.js`, `{PageName}.styles.js`
+4. **Add to navigation**
+5. **Follow design system colors and typography**
+
+### Additional Organization Rules
+
+#### Shared Components Structure
+```
+src/
+  components/
+    Button/
+      ├── index.js
+      ├── Button.js
+      └── Button.styles.js
+```
+
+#### Utilities and Services Structure
+```
+src/
+  utils/
+  services/
+  constants/
+    ├── colors.js
+    ├── typography.js
+    └── dimensions.js
+```
+
+### Navigation Integration Example
+```javascript
+// App.js veya Navigation dosyasında
+import WelcomePage from './src/pages/WelcomePage';
+import LoginPage from './src/pages/LoginPage';
+
+const Stack = createNativeStackNavigator();
+
+function AppNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen 
+        name="Welcome" 
+        component={WelcomePage}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="Login" 
+        component={LoginPage}
+        options={{ title: 'Giriş Yap' }}
+      />
+    </Stack.Navigator>
+  );
+}
+```
+
+## Additional Performance Guidelines
+
+### Bundle Optimization
+- Code splitting for unnecessary code separation
+- Tree shaking for unused code cleanup
+- Lazy imports for on-demand loading
+
+### Memory Leak Prevention
+```javascript
+useEffect(() => {
+  const subscription = someService.subscribe();
+  
+  // Cleanup function - bellek sızıntısını önler
+  return () => {
+    subscription.unsubscribe();
+  };
+}, []);
+```
+
+### Network Optimization
+- Caching for API responses
+- Retry logic for failed requests
+- Request batching for multiple requests 
