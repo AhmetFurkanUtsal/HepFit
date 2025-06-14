@@ -15,7 +15,6 @@ const CalendarHeader = ({
   currentMonth,
   viewMode,
   onViewModeChange,
-  onWeekChange,
   currentWeekText,
 }) => (
   <View style={styles.calendarHeader}>
@@ -23,20 +22,6 @@ const CalendarHeader = ({
       <Text style={styles.monthTitle}>
         {viewMode === 'week' ? currentWeekText : currentMonth}
       </Text>
-      {viewMode === 'week' && (
-        <View style={styles.weekNavigation}>
-          <TouchableOpacity
-            style={styles.weekNavButton}
-            onPress={() => onWeekChange('prev')}>
-            <Icon name="chevron-left" size={20} color="#183B4E" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.weekNavButton}
-            onPress={() => onWeekChange('next')}>
-            <Icon name="chevron-right" size={20} color="#183B4E" />
-          </TouchableOpacity>
-        </View>
-      )}
     </View>
     <View style={styles.toggleContainer}>
       <TouchableOpacity
@@ -216,40 +201,7 @@ const Calendar = ({navigation}) => {
   const [currentWeekIndex, setCurrentWeekIndex] = React.useState(2); // 0-4 arası hafta indexi
 
   // Örnek etkinlik verisi
-  const events = [
-    {
-      id: '1',
-      day: 18,
-      title: 'Futbol Turnuvası',
-      time: '19:30 • 90 dk',
-      location: 'Eğitim B Açık Futbol Sahası',
-      icon: 'soccer',
-    },
-    {
-      id: '2',
-      day: 5,
-      title: 'Basketbol Maçı',
-      time: '20:00 • 120 dk',
-      location: 'Spor Salonu',
-      icon: 'basketball',
-    },
-    {
-      id: '3',
-      day: 23,
-      title: 'Tenis Turnuvası',
-      time: '16:00 • 180 dk',
-      location: 'Tenis Kortları',
-      icon: 'tennis',
-    },
-    {
-      id: '4',
-      day: 26,
-      title: 'Yüzme Yarışması',
-      time: '18:00 • 60 dk',
-      location: 'Olimpik Yüzme Havuzu',
-      icon: 'swim',
-    },
-  ];
+  const events = [];
 
   // Mayıs 2025 takvim verisi (CalendarGrid'den taşındı)
   const calendarData = [
@@ -329,7 +281,6 @@ const Calendar = ({navigation}) => {
             currentMonth="Mayıs 2025"
             viewMode={viewMode}
             onViewModeChange={handleViewModeChange}
-            onWeekChange={handleWeekChange}
             currentWeekText={getCurrentWeekText()}
           />
           <CalendarGrid

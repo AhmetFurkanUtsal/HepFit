@@ -17,6 +17,8 @@ import Home from './src/pages/Home';
 import MatchDetail from './src/pages/MatchDetail';
 import Map from './src/pages/Map';
 import CreateMatch from './src/pages/CreateMatch';
+import MatchSearch from './src/pages/MatchSearch';
+import MatchList from './src/pages/MatchList';
 import MainTabNavigator from './src/navigation/MainTabNavigator';
 
 const Stack = createNativeStackNavigator();
@@ -78,6 +80,16 @@ function App() {
         <Stack.Screen
           name="CreateMatch"
           component={CreateMatch}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="MatchSearch"
+          component={MatchSearch}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="MatchList"
+          component={MatchList}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

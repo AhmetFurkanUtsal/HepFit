@@ -21,22 +21,19 @@ export const styles = StyleSheet.create({
   },
   // Header
   header: {
-    backgroundColor: PRIMARY_COLOR_MEDIUM,
-    paddingTop: 50, // Status bar için boşluk
-    paddingBottom: 15,
-    paddingHorizontal: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    padding: 20,
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: '#002D46',
   },
   backButton: {
     marginRight: 15,
+    padding: 5,
   },
   headerTitle: {
-    color: SURFACE_COLOR,
     fontSize: 20,
     fontFamily: 'Lato-Bold',
+    color: SURFACE_COLOR,
     flex: 1,
   },
   // ScrollView

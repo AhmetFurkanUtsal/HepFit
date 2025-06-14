@@ -183,7 +183,9 @@ const CreateMatch = ({navigation, route}) => {
               styles.inputContainer,
               location ? {borderColor: PRIMARY_COLOR_BRIGHT} : {},
             ]}
-            onPress={() => navigation.navigate('Map')}>
+            onPress={() =>
+              navigation.navigate('Map', {returnTo: 'CreateMatch'})
+            }>
             <Icon
               name="map-marker-outline"
               size={22}

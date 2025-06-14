@@ -45,6 +45,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 10, // Kartlar arası boşluk
+    overflow: 'hidden', // Android için resim taşmalarını önler
+    elevation: 3, // Android gölge efekti
   },
   // Bu stil, aktif kartı büyütmek için kullanılabilir (gelecekte)
   cardActive: {
@@ -52,6 +54,41 @@ export const styles = StyleSheet.create({
     borderColor: PRIMARY_COLOR,
     borderWidth: 2,
     elevation: 5,
+  },
+  // Kart içeriği container'ı
+  cardContent: {
+    width: '100%',
+    height: '100%',
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20, // İç boşluk ekledim
+  },
+  // Kart resmi stilleri
+  cardImage: {
+    width: CARD_WIDTH * 0.6, // Kartın %60'ı kadar genişlik
+    height: CARD_HEIGHT * 0.5, // Kartın %50'si kadar yükseklik
+    borderRadius: 15,
+    marginBottom: 15, // Alt boşluk
+  },
+  // Resim üzerindeki overlay katmanı
+  cardOverlay: {
+    position: 'absolute',
+    bottom: 20, // Kartın alt kısmından 20px yukarıda
+    left: 20,
+    right: 20,
+    backgroundColor: 'rgba(24, 59, 78, 0.9)', // Daha koyu opacity
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  // Overlay içindeki başlık
+  cardTitle: {
+    fontSize: 16, // Biraz küçülttüm
+    fontFamily: 'Lato-Bold',
+    color: '#FFFFFF',
+    textAlign: 'center',
   },
   cardIcon: {
     width: CARD_WIDTH * 0.4,

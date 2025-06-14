@@ -59,28 +59,14 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   monthTitle: {
-    fontSize: 24,
+    fontSize: 28,
     fontFamily: 'Lato-Bold',
-    color: TEXT_PRIMARY,
-  },
-  weekNavigation: {
-    flexDirection: 'row',
-    marginLeft: 15,
-    gap: 8,
-  },
-  weekNavButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: CARD_BACKGROUND,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: CARD_BORDER,
+    color: PRIMARY_COLOR_DARK,
+    flex: 1,
   },
   toggleContainer: {
     flexDirection: 'row',
-    gap: 8,
+    backgroundColor: '#E9EEF2',
   },
   toggleButton: {
     paddingHorizontal: 16,

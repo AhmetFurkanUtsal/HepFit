@@ -8,7 +8,7 @@ import Home from '../pages/Home';
 import Calendar from '../pages/Calendar';
 import Add from '../pages/Add';
 import Map from '../pages/Map';
-import {ProfileScreen} from '../pages/Main/Placeholder';
+import Profile from '../pages/Profile';
 
 // Stil
 import {styles} from '../pages/Home/Home.style';
@@ -108,7 +108,7 @@ const MainTabNavigator = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={Profile}
         options={{
           tabBarIcon: ({focused}) => (
             <Icon

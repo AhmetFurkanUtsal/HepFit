@@ -6,10 +6,12 @@ import {
   FlatList,
   Dimensions,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from './Selection.style';
+import {Images} from '../../assets/images'; // Merkezi resim import'u
 
 // Ekran boyutlarına göre kart genişliğini ve kenar boşluğunu hesapla
 const {width} = Dimensions.get('window');
@@ -38,8 +40,19 @@ const Selection = () => {
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={() => handleCardPress(item.id)}
-        style={[styles.card, isSelected && styles.cardActive]}
-      />
+        style={[styles.card, isSelected && styles.cardActive]}>
+        {/* Kart içeriği - Resim ve içerik */}
+        <View style={styles.cardContent}>
+          <Image
+            source={Images.selectionCard}
+            style={styles.cardImage}
+            resizeMode="cover"
+          />
+          <View style={styles.cardOverlay}>
+            <Text style={styles.cardTitle}>Spor Alanı {item.id}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
     );
   };
 

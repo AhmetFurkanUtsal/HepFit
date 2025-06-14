@@ -95,8 +95,11 @@ const LocationInfoCard = ({
 };
 
 // --- Ana Sayfa Bileşeni (Main Page Component) ---
-const Map = ({navigation}) => {
+const Map = ({navigation, route}) => {
   const [selectedLocation, setSelectedLocation] = useState(1);
+
+  // Geri dönülecek ekranın adını al
+  const returnToScreen = route.params?.returnTo || 'CreateMatch';
 
   // Konum bilgilerini tanımla
   const locationData = {
@@ -120,7 +123,7 @@ const Map = ({navigation}) => {
   // Konumu seç butonu fonksiyonu
   const handleSelectLocation = () => {
     // Seçilen konumu geri döndür ve sayfayı kapat
-    navigation.navigate('CreateMatch', {
+    navigation.navigate(returnToScreen, {
       selectedLocation: locationData[selectedLocation],
     });
   };
