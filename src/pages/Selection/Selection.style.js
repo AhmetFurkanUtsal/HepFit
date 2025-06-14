@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
   },
   // Bu stil, aktif kartı büyütmek için kullanılabilir (gelecekte)
   cardActive: {
-    transform: [{scale: 1.05}],
+    // transform: [{scale: 1.05}],
     borderColor: PRIMARY_COLOR,
     borderWidth: 2,
     elevation: 5,
@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   cardText: {
-    fontSize: 14,
+    fontSize: 22,
     fontFamily: 'Lato-Bold',
     color: '#374151',
   },

@@ -13,6 +13,11 @@ import Welcome from './src/pages/Welcome';
 import Login from './src/pages/Login';
 import Register from './src/pages/Register';
 import Selection from './src/pages/Selection';
+import Home from './src/pages/Home';
+import MatchDetail from './src/pages/MatchDetail';
+import Map from './src/pages/Map';
+import CreateMatch from './src/pages/CreateMatch';
+import MainTabNavigator from './src/navigation/MainTabNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,12 +32,54 @@ function App() {
       <Stack.Navigator
         initialRouteName="Welcome"
         screenOptions={{
-          headerShown: false, // Tüm sayfalarda başlığı gizle
+          headerStyle: {
+            backgroundColor: '#001F30',
+          },
+          headerTintColor: '#FFFFFF',
+          headerTitleStyle: {
+            fontFamily: 'Lato-Bold',
+          },
         }}>
-        <Stack.Screen name="Welcome" component={Welcome} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Selection" component={Selection} />
+        <Stack.Screen
+          name="Welcome"
+          component={Welcome}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{title: 'Giriş Yap'}}
+        />
+        <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Selection"
+          component={Selection}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Main"
+          component={MainTabNavigator}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="MatchDetail"
+          component={MatchDetail}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Map"
+          component={Map}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="CreateMatch"
+          component={CreateMatch}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,0 +1,13 @@
+<svg width="150" height="150" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="background-color:white;">
+  <defs>
+    <style>
+      .ball { fill: #183B4E; }
+      .lines { stroke: #FFFFFF; stroke-width: 3; fill: none; }
+    </style>
+  </defs>
+  <circle class="ball" cx="50" cy="50" r="48"/>
+  <path class="lines" d="M50 2 C 80 25, 95 50, 85 75 S 60 98, 50 98"/>
+  <path class="lines" d="M50 2 C 20 25, 5 50, 15 75 S 40 98, 50 98"/>
+  <path class="lines" d="M2 50 C 25 20, 50 5, 75 15 S 98 40, 98 50"/>
+  <path class="lines" d="M2 50 C 25 80, 50 95, 75 85 S 98 60, 98 50"/>
+</svg> 

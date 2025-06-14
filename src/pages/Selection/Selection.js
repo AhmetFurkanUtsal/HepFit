@@ -1,6 +1,14 @@
-import React from 'react';
-import {View, Text, StatusBar, FlatList, Dimensions} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  StatusBar,
+  FlatList,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useNavigation} from '@react-navigation/native';
 import {styles} from './Selection.style';
 
 // Ekran boyutlarına göre kart genişliğini ve kenar boşluğunu hesapla
@@ -13,8 +21,27 @@ const HORIZONTAL_PADDING = (width - CARD_WIDTH) / 2 - HORIZONTAL_MARGIN;
 const DUMMY_DATA = [{id: '1'}, {id: '2'}, {id: '3'}, {id: '4'}, {id: '5'}];
 
 const Selection = () => {
-  // Her bir boş kartı render eden fonksiyon
-  const renderCard = ({item}) => <View style={styles.card} />;
+  const [selectedCardId, setSelectedCardId] = useState(null);
+  const navigation = useNavigation();
+
+  // Karta tıklandığında Home sayfasına yönlendir
+  const handleCardPress = cardId => {
+    setSelectedCardId(cardId);
+    navigation.navigate('Main');
+  };
+
+  // Her bir kartı render eden fonksiyon
+  const renderCard = ({item}) => {
+    const isSelected = item.id === selectedCardId;
+
+    return (
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={() => handleCardPress(item.id)}
+        style={[styles.card, isSelected && styles.cardActive]}
+      />
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
